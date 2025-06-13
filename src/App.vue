@@ -1,47 +1,44 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { RouterView, RouterLink } from 'vue-router'
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
+    <nav>
+      <RouterLink to="/">Homepage</RouterLink>
+      <RouterLink to="/world-greeting">Hello World</RouterLink>
+    </nav>
   </header>
 
   <main>
-    <TheWelcome />
+    <RouterView />
   </main>
 </template>
 
 <style scoped>
 header {
-  line-height: 1.5;
+  flex-grow: 0;
+  flex-shrink: 1;
+  width: 100%;
+  background-color: #64898e;
+  border-width: 6px;
+  border-color: #3e4c84;
+  border-top: 0;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+header nav {
+  display: flex;
+  flex-direction: row;
+  padding: .6rem 0;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+header nav a {
+  color: black;
+  font-weight: 600;
+  padding: 0 1em;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+main {
+  flex-grow: 1;
 }
 </style>
