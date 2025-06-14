@@ -15,6 +15,14 @@ a,
   padding: 3px;
 }
 
+.routeActiveLink {
+  background-color: #f1f1f1;
+}
+
+.routeExactActiveLink {
+  background-color: #f4f4f4;
+}
+
 @media (hover: hover) {
   a:hover {
     background-color: hsla(160, 100%, 37%, 0.2);

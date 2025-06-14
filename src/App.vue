@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { RouterView, RouterLink } from 'vue-router'
+import router from '@/router'
+
+const routes = router.getRoutes()
 </script>
 
 <template>
   <header>
     <nav>
-      <RouterLink to="/">Homepage</RouterLink>
-      <RouterLink to="/world-greeting">Hello World</RouterLink>
+      <RouterLink v-for="route in routes" :to="route.path">{{ route.name }}</RouterLink>
     </nav>
   </header>
 
@@ -29,7 +31,7 @@ header {
 header nav {
   display: flex;
   flex-direction: row;
-  padding: .6rem 0;
+  padding: .6rem 1rem;
 }
 
 header nav a {
@@ -39,6 +41,8 @@ header nav a {
 }
 
 main {
+  display: flex;
   flex-grow: 1;
+  place-content: center;
 }
 </style>

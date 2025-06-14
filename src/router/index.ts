@@ -1,27 +1,47 @@
+
 import { createRouter, createWebHistory } from 'vue-router'
 import Homepage from '@/pages/homepage/Homepage.vue'
+import WorldGreeting from '../pages/helloWorld/WorldGreeting.vue'
+import NineMensMorris from '@/pages/nineMensMorris/NineMensMorris.vue'
+
+declare module 'vue-router' {
+  interface RouteMeta {
+    imagePath: string
+  }
+}
 
 const routes = [
     {
       path: '/',
       name: 'Home',
       component: Homepage,
+      meta: {
+        imagePath: '/src/assets/logo.svg'
+      },
     },
     {
       path: '/world-greeting',
       name: 'Greetings',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../pages/helloWorld/WorldGreeting.vue'),
+      component: WorldGreeting,
+      meta: {
+        imagePath: '/src/pages/helloWorld/logo-greeting.svg'
+      },
+    },
+    {
+      path: '/nine-mens-morris',
+      name: 'Nine Men\'s Morris',
+      component: NineMensMorris,
+      meta: {
+        imagePath: '/src/pages/nineMensMorris/platform.svg'
+      },
     },
   ]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
-  linkActiveClass: ,
-  link
+  linkActiveClass: "routeActiveLink",
+  linkExactActiveClass: "routeExactActiveLink",
 })
 
 export default router
