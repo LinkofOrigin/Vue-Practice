@@ -1,15 +1,19 @@
+import Board from "./components/board/board";
 import { PLAYER } from "./components/playerDisplay/player";
 import Player from "./components/playerDisplay/player";
 
 
 class NineMensMorris {
+
     currentPlayer?: Player;
     playerOne: Player;
     playerTwo: Player;
+    board: Board;
 
     constructor() {
         this.playerOne = new Player(PLAYER.ONE, '#FF0000');
         this.playerTwo = new Player(PLAYER.TWO, '#0000FF');
+        this.board = new Board();
     }
 
     startNewGame(): void {

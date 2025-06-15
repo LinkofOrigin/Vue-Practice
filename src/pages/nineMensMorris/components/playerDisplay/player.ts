@@ -26,7 +26,7 @@ class Player {
     }
 
     removeFromHand(): PlayerToken {
-        console.log("Removing token from hand");
+        console.log("Removing token from hand")
         if (this.tokensInHand.length <= 0) {
             throw new Error("Player hand is empty! Can't remove a token!")
         }

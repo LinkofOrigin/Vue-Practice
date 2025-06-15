@@ -27,7 +27,7 @@ function removeTokenFromHand(playerId: number) {
         <div class="playerData">
             <h2>Player One</h2>
             <div>In Hand: {{ playerOneHand.length }}</div>
-            <!-- <button @click="removeTokenFromHand(props.playerOne.id)">Remove</button> -->
+            <!-- <button @click="removeTokenFromHand(props.playerOne.id)">Test Remove</button> -->
         </div>
 
         <h3 class="turnIndicator">It's Player {{ turnIndicatorText }}'s turn!</h3>
@@ -35,16 +35,17 @@ function removeTokenFromHand(playerId: number) {
         <div class="playerData">
             <h2>Player Two</h2>
             <div>In Hand: {{ playerTwoHand.length }}</div>
-            <!-- <button @click="removeTokenFromHand(props.playerTwo.id)">Remove</button> -->
+            <!-- <button @click="removeTokenFromHand(props.playerTwo.id)">Test Remove</button> -->
         </div>
     </div>
 </template>
 
 <style scoped>
 .display {
-    flex-grow: 1;
+    width: 100%;
     display: flex;
     flex-direction: row;
+    margin-bottom: 2rem;
 }
 
 .playerData {

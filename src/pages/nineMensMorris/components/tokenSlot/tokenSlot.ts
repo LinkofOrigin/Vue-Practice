@@ -3,7 +3,7 @@ import type PlayerToken from "../playerPiece/playerToken";
 
 class TokenSlot {
     neighbors: Array<TokenSlot> = [];
-    currentToken?: PlayerToken | null;
+    currentToken: PlayerToken | null = null;
 
     addNeighbor(newNeighbor: TokenSlot) {
         this.neighbors.push(newNeighbor);

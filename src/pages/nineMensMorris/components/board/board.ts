@@ -1,4 +1,4 @@
-import TokenSlot from "../boardSlot/tokenSlot";
+import TokenSlot from "../tokenSlot/tokenSlot";
 
 const gridMap = new Map<number, number[]>([
     [1, [2, 10]],
