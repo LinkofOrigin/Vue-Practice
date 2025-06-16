@@ -49,7 +49,14 @@ function getToken(index: number): TokenSlot | null {
 <style scoped>
 .boardGrid {
     display: grid;
+    width: 50%;
+    align-self: center;
     grid-template-columns: repeat(13, 1fr);
     grid-template-rows: repeat(13, 1fr);
+    padding: .4rem;
+    background-image: url("../../../../assets/nmm-background.png");
+    background-size: cover;
+    justify-items: center;
+    justify-self: center;
 }
 </style>

@@ -23,7 +23,7 @@ function removeTokenFromHand(playerId: number) {
 </script>
 
 <template>
-    <div class="display">
+    <div class="playerDisplay">
         <div class="playerData">
             <h2>Player One</h2>
             <div>In Hand: {{ playerOneHand.length }}</div>
@@ -41,7 +41,7 @@ function removeTokenFromHand(playerId: number) {
 </template>
 
 <style scoped>
-.display {
+.playerDisplay {
     width: 100%;
     display: flex;
     flex-direction: row;

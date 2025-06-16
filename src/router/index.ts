@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Homepage from '@/pages/homepage/Homepage.vue'
 import WorldGreeting from '../pages/helloWorld/WorldGreeting.vue'
 import NineMensMorris from '@/pages/nineMensMorris/NineMensMorris.vue'
+import VueReference from '@/pages/refSheet/VueReference.vue'
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -28,6 +29,14 @@ const routes = [
       },
     },
     {
+      path: '/refSheet',
+      name: 'Vue Reference',
+      component: VueReference,
+      meta: {
+        imagePath: '/src/pages/refSheet/ref-sheet-icon.svg'
+      },
+    },
+    {
       path: '/nine-mens-morris',
       name: 'Nine Men\'s Morris',
       component: NineMensMorris,
@@ -35,7 +44,7 @@ const routes = [
         imagePath: '/src/pages/nineMensMorris/platform.svg'
       },
     },
-  ]
+    ]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

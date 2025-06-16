@@ -11,7 +11,9 @@ const props = defineProps<{
 
 function isToken(): boolean {
     let isToken = props.tokenSlot !== null;
-    console.log("Board slot [" + props.row + "," + props.column + "] is token: " + (isToken))
+    if (isToken) {
+        console.log("Board slot [" + props.row + "," + props.column + "] is TOKEN")
+    }
     return isToken;
 }
 function getToken(): PlayerToken | null {
@@ -21,34 +23,19 @@ function getToken(): PlayerToken | null {
     }
     return tokenData;
 }
-
-function isHorzLine(): boolean {
-    debugger;
-    let isHorz = false;
-    if (!isToken() && (props.row - 1) % 2 === 0) {
-        isHorz = true;
-    }
-    return isHorz;
-}
-
-function isVertLine(): boolean {
-    debugger;
-    let isVert = false;
-    if (!isToken() && (props.column - 1) % 2 === 0) {
-        isVert = true;
-    }
-    return isVert;
-
-}
 </script>
 
 <template>
     <TokenSlotView v-if="isToken()" :player-token="getToken()" />
-    <div v-else-if="isHorzLine()" class="horzLine"></div>
-    <div v-else-if="isVertLine()" class="vertLine"></div>
+    <div v-else class="empty"></div>
 </template>
 
 <style scoped>
+.empty {
+    /* flex-grow: 1; */
+    color: black;
+}
+
 .horzLine {
     background-color: black;
     height: 2px;

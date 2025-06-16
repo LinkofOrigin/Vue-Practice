@@ -43,7 +43,6 @@ header nav a {
 main {
   display: flex;
   flex-grow: 1;
-  place-content: center;
   flex-direction: column;
   max-width: 100%;
 }
