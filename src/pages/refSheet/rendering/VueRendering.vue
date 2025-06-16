@@ -4,7 +4,6 @@ import RefCodeExample from '../refComponents/RefCodeExample.vue';
 import RefPanel from '../refComponents/RefPanel.vue';
 import RefPanelSection from '../refComponents/RefPanelSection.vue';
 
-
 const loopTemplate = ref(
 `
 const loopList = ref([1, 2, 3])
@@ -37,7 +36,7 @@ function divisibleByThree(num: number) { return num % 3 === 0 }
             </ul>
             <RefCodeExample :code="loopTemplate" />
         </RefPanelSection>
-        
+
         <RefPanelSection title="Conditionals">
             <ul>
                 <li><code>v-if: / v-else-if: / v-else:</code> can be used to conditionally render elements.</li>
@@ -46,7 +45,3 @@ function divisibleByThree(num: number) { return num % 3 === 0 }
         </RefPanelSection>
     </RefPanel>
 </template>
-
-<style scoped>
-
-</style>

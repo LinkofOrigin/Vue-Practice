@@ -35,14 +35,10 @@ const computedValue = computed(() => {
             </ul>
             <RefCodeExample :code="reactiveTemplate" />
         </RefPanelSection>
-        
+
         <RefPanelSection title="File Template">
             <div>The basics for a .vue file</div>
             <RefCodeExample :code="fileTemplate" />
         </RefPanelSection>
     </RefPanel>
 </template>
-
-<style scoped>
-
-</style>

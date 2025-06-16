@@ -2,6 +2,7 @@
 import VueBasics from './basics/VueBasics.vue';
 import VueComponents from './components/VueComponents.vue';
 import VueLifecycleHooks from './lifecycleHooks/VueLifecycleHooks.vue';
+import VuePlayground from './playground/VuePlayground.vue';
 import VueRendering from './rendering/VueRendering.vue';
 </script>
 
@@ -12,6 +13,7 @@ import VueRendering from './rendering/VueRendering.vue';
         <VueComponents />
         <VueLifecycleHooks />
     </div>
+    <VuePlayground />
 </template>
 
 <style scoped>
