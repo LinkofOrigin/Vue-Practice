@@ -1,14 +1,33 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import RefPanel from '../refComponents/RefPanel.vue';
 import RefPanelSection from '../refComponents/RefPanelSection.vue';
 import PlaygroundSideBySide from './PlaygroundSideBySide.vue';
 import HookPuppet from './HookPuppet.vue';
 
 // Button click to update ref value
-const currentXp = ref(0)
+const levelThresholds = [
+    Math.pow(2, 2), Math.pow(3, 2), Math.pow(4, 2), Math.pow(5, 2), 
+    Math.pow(4, 3), Math.pow(5, 3), Math.pow(6, 3), Math.pow(7, 3), 
+]
+const currentLevel = computed(() => {
+    let level = 1
+    let xpCounter = totalXp.value
+    let thresholdIndex = 0
+    while (xpCounter >= 0) {
+        xpCounter -= levelThresholds[thresholdIndex++]
+        if (xpCounter > 0) {
+            level++
+        }
+        else {
+            break
+        }
+    }
+    return level
+})
+const totalXp = ref(0)
 function increaseXp() {
-    currentXp.value++;
+    totalXp.value += Math.ceil(Math.random() * 10)
 }
 
 // Two-way sync model to keep a value in sync with the DOM
@@ -47,21 +66,31 @@ function destroyPuppet() {
                 </RefPanelSection>
             </template>
             <template v-slot:right>
-                <button @click="increaseXp">Gain XP</button>
-                <span>Current XP: {{ currentXp }}</span>
+                <div class="levelUpContainer">
+                    <div>
+                        <button @click="increaseXp">Gain XP</button>
+                    </div>
+                    <div>
+                        <p>Total XP: {{ totalXp }}</p>
+                        <p>Level: {{ currentLevel }}</p>
+
+                    </div>
+                </div>
             </template>
         </PlaygroundSideBySide>
         <hr>
         <PlaygroundSideBySide>
             <template v-slot:left>
                 <RefPanelSection title="Forms">
-                    <p>I'll grant your wish to double something of your choosing. What is would you like doubled?</p>
+                    <p>I'll grant your wish to double one thing of your choosing. What is it that would you like doubled?</p>
                     <p>(<code>v-model</code> keeps a value in sync with the DOM contents, aka two-way sync.)</p>
                 </RefPanelSection>
             </template>
             <template v-slot:right>
                 <div class="formModelContainer">
-                    <input v-model="formInput" placeholder="Type to double your wish" />
+                    <div>
+                        <textarea v-model="formInput" placeholder="Type to double your wish" />
+                    </div>
                     <p>{{ formInput }}</p>
                 </div>
             </template>
@@ -71,7 +100,7 @@ function destroyPuppet() {
             <template v-slot:left>
                 <RefPanelSection title="Hooks">
                     <p>Wield the power to create and destroy with a mere twitch of your finger!</p>
-                    <p>(Use the buttons to mount, unmount, and update the DOM to and observe the hooked events.)</p>
+                    <p>(Use the buttons to mount, unmount, and update the DOM to observe the emitted hooks & events.)</p>
                 </RefPanelSection>
             </template>
             <template v-slot:right>
@@ -83,7 +112,9 @@ function destroyPuppet() {
                         <button @click="destroyPuppet" :disabled="!showPuppet">Destroy</button>
                     </div>
                     <div class="hookTextContainer">
-                        <p class="hookControlsText" v-for="stackItem in hookStack">{{ stackItem }}</p>
+                        <ul>
+                        <li class="hookControlsText" v-for="stackItem in hookStack">{{ stackItem }}</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="hookPuppetContainer">
@@ -102,11 +133,25 @@ function destroyPuppet() {
 </template>
 
 <style scoped>
-/* Form Model Styles */
-.formModelContainer {
+/* Reactive Styles */
+.levelUpContainer {
     display: flex;
     flex-direction: row;
+    height: 100%;
+}
+
+.levelUpContainer > div {
+    display: flex;
+    flex-direction: column;
+    place-content: center;
     align-items: center;
+    flex-grow: 1;
+}
+
+/* Form Model Styles */
+.formModelContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 /* Hook Styles */

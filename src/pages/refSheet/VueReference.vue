@@ -13,25 +13,27 @@ import VueRendering from './rendering/VueRendering.vue';
         <VueComponents />
         <VueLifecycleHooks />
     </div>
-    <VuePlayground />
+    <div>
+        <VuePlayground />
+    </div>
 </template>
 
 <style scoped>
 .container {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
     column-gap: 2rem;
     row-gap: 1rem;
+    grid-template-columns: repeat(1, minmax(300px, 1fr));
 }
 
 @media (min-width: 640px) {
     .container {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(300px, 1fr));
     }
 }
 @media (min-width: 1280px) {
     .container {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(300px, 1fr));
     }
 }
 </style>
