@@ -16,9 +16,9 @@ const formInput = ref('')
 
 // Lifecycle hooks to demonstrate timing and order of operations
 const maxStack = 5
-const hookStack = ref(["test"])
-const puppetId = ref("puppet")
-const puppets = ;
+const hookPuppet = HookPuppet
+const hookStack = ref([".", ".", ".", ".", "."])
+const showPuppet = ref(true)
 function pushToStack(data: string) {
     if (hookStack.value.length >= maxStack) {
         hookStack.value.shift()
@@ -29,10 +29,10 @@ function puppetEmitCallback(msg: string) {
     pushToStack(msg)
 }
 function createPuppet() {
-    // let newPuppet = Vue.component()
+    showPuppet.value = true
 }
 function destroyPuppet() {
-    document.getElementById(puppetId.value)?.remove()
+    showPuppet.value = false
 }
 
 </script>
@@ -60,8 +60,10 @@ function destroyPuppet() {
                 </RefPanelSection>
             </template>
             <template v-slot:right>
-                <input v-model="formInput" placeholder="Type to double your wish" />
-                <span>{{ formInput }}</span>
+                <div class="formModelContainer">
+                    <input v-model="formInput" placeholder="Type to double your wish" />
+                    <p>{{ formInput }}</p>
+                </div>
             </template>
         </PlaygroundSideBySide>
         <hr>
@@ -73,15 +75,26 @@ function destroyPuppet() {
                 </RefPanelSection>
             </template>
             <template v-slot:right>
-                <div>
-                    <button @click="createPuppet">Create</button>
-                    <button @click="destroyPuppet">Destroy</button>
+                <div class="hookControls">
                     <div>
-                        <span v-for="stackItem in hookStack">{{ stackItem }}</span>
+                        <button @click="createPuppet" :disabled="showPuppet">Create</button>
+                    </div>
+                    <div>
+                        <button @click="destroyPuppet" :disabled="!showPuppet">Destroy</button>
+                    </div>
+                    <div class="hookTextContainer">
+                        <p class="hookControlsText" v-for="stackItem in hookStack">{{ stackItem }}</p>
                     </div>
                 </div>
-                <div>
-                    <component :is="">
+                <div class="hookPuppetContainer">
+                    <component :is="hookPuppet" v-if="showPuppet"
+                        @mounted="puppetEmitCallback"
+                        @beforeMount="puppetEmitCallback"
+                        @unmounted="puppetEmitCallback"
+                        @beforeUnmount="puppetEmitCallback"
+                        @updated="puppetEmitCallback"
+                        @beforeUpdate="puppetEmitCallback"
+                    />
                 </div>
             </template>
         </PlaygroundSideBySide>
@@ -89,5 +102,45 @@ function destroyPuppet() {
 </template>
 
 <style scoped>
+/* Form Model Styles */
+.formModelContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 
+/* Hook Styles */
+.hookControls {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+}
+
+.hookControls > div {
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+}
+
+.hookControls > div > button {
+    display: inline;
+    margin: 10px 20px;
+}
+
+.hookTextContainer {
+    background-color: rgb(242, 242, 242);
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    padding: 0.2rem 0.5rem;
+}
+
+.hookControlsText {
+    font-size: 13px;
+    color: black;
+    line-height: 130%;
+}
+
+.hookPuppetContainer {
+    min-height: 130px;
+}
 </style>

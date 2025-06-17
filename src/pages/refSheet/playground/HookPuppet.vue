@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import { onBeforeMount, onBeforeUnmount, onBeforeUpdate, onMounted, onUnmounted, onUpdated, ref } from 'vue';
 
-
-type HookFn = () => void
-const props = defineProps<{
-    id: string,
-}>()
-
 const data = ref(0)
 
 const emit = defineEmits(['mounted', 'beforeMount', 'unmounted', 'beforeUnmount', 'updated', 'beforeUpdate'])
@@ -41,6 +35,37 @@ function updateValue() {
 </script>
 
 <template>
-    <div :id="id">Look at me! Here I am! Hope you don't destroy me!</div>
-    <button @click="updateValue">Current Data: {{ data }}</button>
+    <div class="puppet">
+        <h5>Puppet</h5>
+        <p>Look at me! Here I am! Hope you don't destroy me!</p>
+        <div class="buttonContainer">
+            <button @click="updateValue">Current Data: {{ data }}</button>
+        </div>
+    </div>
 </template>
+
+<style scoped>
+.puppet {
+    background-color: rgb(62, 82, 69);
+    margin-top: 10px;
+    border-radius: 4px;
+    border-style: solid;
+    border-color: rgb(216, 184, 55);
+    border-width: 3px;
+    padding: 0.5rem;
+}
+h5 {
+    font-weight: 800;
+    font-size: 16px;
+    text-align: center;
+}
+
+p {
+    font-size: 14px;
+    text-align: center;
+}
+
+.buttonContainer {
+    text-align: center;
+}
+</style>
