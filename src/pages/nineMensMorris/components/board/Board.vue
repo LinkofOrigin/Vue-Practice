@@ -7,6 +7,12 @@ const props = defineProps<{
     board: Board,
 }>()
 
+const emit = defineEmits(['slotClicked'])
+
+function handleBoardSlotClicked(tokenSlot: TokenSlot) {
+    emit('slotClicked', tokenSlot)
+}
+
 function getRow(index: number) {
     let row = ((Math.floor(((index - 1) / 13))) % 13) + 1;
     console.log("Index: " + index + " => Row: " + row);
@@ -42,7 +48,7 @@ function getToken(index: number): TokenSlot | null {
 
 <template>
     <div class="boardGrid">
-        <BoardSlot v-for="index in 169" :row="getRow(index)" :column="getCol(index)" :tokenSlot="getToken(index)" />
+        <BoardSlot v-for="index in 169" :row="getRow(index)" :column="getCol(index)" :tokenSlot="getToken(index)" @boardSlotClicked="handleBoardSlotClicked" />
     </div>
 </template>
 

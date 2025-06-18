@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed, onBeforeMount } from 'vue';
 import type PlayerToken from '../playerPiece/playerToken';
 import type TokenSlot from '../tokenSlot/tokenSlot';
 import TokenSlotView from '../tokenSlot/TokenSlotView.vue';
@@ -9,6 +10,21 @@ const props = defineProps<{
     tokenSlot: TokenSlot | null,
 }>()
 
+const emit = defineEmits(['boardSlotClicked'])
+
+function boardSlotClicked() {
+    emit('boardSlotClicked', props.tokenSlot)
+}
+
+const playerToken = computed(() => {
+    let tokenData = null;
+    if (props.tokenSlot !== null && props.tokenSlot.currentToken !== null) {
+        tokenData = props.tokenSlot.currentToken;
+    }
+    return tokenData;
+})
+
+
 function isToken(): boolean {
     let isToken = props.tokenSlot !== null;
     if (isToken) {
@@ -16,23 +32,15 @@ function isToken(): boolean {
     }
     return isToken;
 }
-function getToken(): PlayerToken | null {
-    let tokenData = null;
-    if (props.tokenSlot !== null && props.tokenSlot.currentToken !== null) {
-        tokenData = props.tokenSlot.currentToken;
-    }
-    return tokenData;
-}
 </script>
 
 <template>
-    <TokenSlotView v-if="isToken()" :player-token="getToken()" />
+    <TokenSlotView v-if="isToken()" :player-token="playerToken" @slot-view-clicked="boardSlotClicked" />
     <div v-else class="empty"></div>
 </template>
 
 <style scoped>
 .empty {
-    /* flex-grow: 1; */
     color: black;
 }
 

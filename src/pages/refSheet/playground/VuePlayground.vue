@@ -81,7 +81,7 @@ function destroyPuppet() {
         <hr>
         <PlaygroundSideBySide>
             <template v-slot:left>
-                <RefPanelSection title="Forms">
+                <RefPanelSection title="The Wizard">
                     <p>I'll grant your wish to double one thing of your choosing. What is it that would you like doubled?</p>
                     <p>(<code>v-model</code> keeps a value in sync with the DOM contents, aka two-way sync.)</p>
                 </RefPanelSection>
@@ -98,7 +98,7 @@ function destroyPuppet() {
         <hr>
         <PlaygroundSideBySide>
             <template v-slot:left>
-                <RefPanelSection title="Hooks">
+                <RefPanelSection title="Puppet Master">
                     <p>Wield the power to create and destroy with a mere twitch of your finger!</p>
                     <p>(Use the buttons to mount, unmount, and update the DOM to observe the emitted hooks & events.)</p>
                 </RefPanelSection>
