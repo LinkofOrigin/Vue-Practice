@@ -1,24 +1,33 @@
 <script setup lang="ts">
-import { onBeforeMount, onMounted, ref } from 'vue';
+import { computed } from 'vue';
 import PlayerToken from '../playerPiece/playerToken';
 import PlayerTokenIcon from '../playerPiece/PlayerTokenIcon.vue';
 import EmptySlot from './EmptySlot.vue';
-import TokenSlot from './tokenSlot';
 
 const props = defineProps<{
     playerToken: PlayerToken | null,
 }>()
 const emit = defineEmits(['slotViewClicked'])
+const highlighted = computed(() => {
+    if (props.playerToken?.isHighlighted) {
+        return true
+    }
+    return false
+})
 
 function slotViewClicked() {
     emit('slotViewClicked')
 }
 
+function tokenNotNull() {
+    return props.playerToken !== null
+}
+
 </script>
 
 <template>
-    <EmptySlot @click="slotViewClicked">
-        <PlayerTokenIcon v-if="playerToken !== null" :token="playerToken" />
+    <EmptySlot @click="slotViewClicked" :highlight="highlighted">
+        <PlayerTokenIcon v-if="tokenNotNull()" :token="props.playerToken" />
     </EmptySlot>
 </template>
 

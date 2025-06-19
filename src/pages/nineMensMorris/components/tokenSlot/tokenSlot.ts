@@ -5,6 +5,16 @@ class TokenSlot {
     neighbors: Array<TokenSlot> = [];
     currentToken: PlayerToken | null = null;
 
+    isNeighbor(otherToken: PlayerToken): boolean {
+        let tokenIsNeighbor = false
+        this.neighbors.forEach((tokenSlot: TokenSlot) => {
+            if (tokenSlot.currentToken === otherToken) {
+                tokenIsNeighbor = true
+            }
+        })
+        return tokenIsNeighbor
+    }
+
     addNeighbor(newNeighbor: TokenSlot) {
         this.neighbors.push(newNeighbor);
     }

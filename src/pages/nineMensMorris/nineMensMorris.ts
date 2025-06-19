@@ -10,6 +10,7 @@ class NineMensMorris {
     playerOne: Player;
     playerTwo: Player;
     board: Board;
+    selectedToken: PlayerToken | null = null;
 
     constructor() {
         this.playerOne = new Player(PLAYER.ONE, '#FF0000');
@@ -48,6 +49,14 @@ class NineMensMorris {
 
     resolveMillFor(token: PlayerToken): boolean {
         return false
+    }
+
+    setSelectedToken(newSelectedToken: PlayerToken) {
+        if (this.selectedToken !== null) {
+            this.selectedToken.isHighlighted = false
+        }
+        this.selectedToken = newSelectedToken
+        this.selectedToken.isHighlighted = true
     }
 }
 

@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeMount } from 'vue';
-import type PlayerToken from '../playerPiece/playerToken';
+import { computed, onBeforeMount, onUpdated } from 'vue';
 import type TokenSlot from '../tokenSlot/tokenSlot';
 import TokenSlotView from '../tokenSlot/TokenSlotView.vue';
 
@@ -23,7 +22,6 @@ const playerToken = computed(() => {
     }
     return tokenData;
 })
-
 
 function isToken(): boolean {
     let isToken = props.tokenSlot !== null;

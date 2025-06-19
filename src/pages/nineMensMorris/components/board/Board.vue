@@ -44,6 +44,7 @@ function getToken(index: number): TokenSlot | null {
     }
     return tokenData;
 }
+
 </script>
 
 <template>
