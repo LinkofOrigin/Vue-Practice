@@ -4,6 +4,7 @@ import Homepage from '@/pages/homepage/Homepage.vue'
 import WorldGreeting from '../pages/helloWorld/WorldGreeting.vue'
 import NineMensMorris from '@/pages/nineMensMorris/NineMensMorris.vue'
 import VueReference from '@/pages/refSheet/VueReference.vue'
+import TicTacToe from '@/pages/ticTacToe/TicTacToe.vue'
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -40,6 +41,14 @@ const routes = [
       path: '/nine-mens-morris',
       name: 'Nine Men\'s Morris',
       component: NineMensMorris,
+      meta: {
+        imagePath: '/src/pages/nineMensMorris/platform.svg'
+      },
+    },
+    {
+      path: '/ticTacToe',
+      name: 'TicTacToe',
+      component: TicTacToe,
       meta: {
         imagePath: '/src/pages/nineMensMorris/platform.svg'
       },
